@@ -1,0 +1,21 @@
+# Instalador baixa direto (não abre no navegador)
+<FilesMatch "\.exe$">
+  ForceType application/octet-stream
+  Header set Content-Disposition attachment
+</FilesMatch>
+# versao.json nunca fica guardado em cache (o jogo e o site sempre leem a versão nova)
+<Files "versao.json">
+  Header set Cache-Control "no-store"
+  Header set Access-Control-Allow-Origin "*"
+</Files>
+# Imagens ficam em cache por 30 dias
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+</IfModule>
+# O instalador fica no GitHub (Releases): este endereço sempre leva pra versão mais nova
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^download/Dinasty-Instalador\.exe$ https://github.com/centralcompanyoficial/dinasty-site/releases/latest/download/Dinasty-Instalador.exe [R=302,L]
+</IfModule>
