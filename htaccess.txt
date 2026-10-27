@@ -1,0 +1,33 @@
+# Central - centralcompany.com.br (raiz: public_html/.htaccess)
+# Site em HTML + PHP. Nenhum aplicativo Node/Passenger neste dominio.
+
+# Abre as pastas (/admin/, /lab/) pelo index delas
+DirectoryIndex index.php index.html
+
+# Nao lista o conteudo de pastas sem index
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Forca https
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # Uniformes saiu do ar em 27/10/2026: paginas antigas vao para a home
+  RewriteRule ^(uniformes|montar|brindes)(/.*)?$ / [L,R=301]
+  # Backup do site antigo nao fica publico
+  RewriteRule ^_backup- - [F,L]
+</IfModule>
+
+# Fontes e imagens com cache longo
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+</IfModule>
+
+# Bloqueia arquivos internos
+<FilesMatch "^(\.user\.ini|LEIA-ME\.txt)$">
+  Require all denied
+</FilesMatch>
