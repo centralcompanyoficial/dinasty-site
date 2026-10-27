@@ -155,37 +155,171 @@ footer a{color:#fff;text-decoration:none}
 .flutua{position:fixed;right:18px;bottom:18px;z-index:30;width:60px;height:60px;border-radius:50%;background:var(--zap);color:#fff;display:grid;place-items:center;box-shadow:0 14px 30px -8px rgba(23,138,71,.6)}
 .flutua .ic{width:30px;height:30px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* formulário de prévia */
+.pede{display:flex;gap:8px;max-width:520px;background:#fff;border:1px solid var(--linha);border-radius:999px;padding:6px;box-shadow:0 18px 40px -26px rgba(58,0,176,.5)}
+.pede input{flex:1;min-width:0;border:0;background:transparent;font:500 16px var(--corpo);color:var(--tinta);padding:0 16px;outline:none}
+.pede input::placeholder{color:#8f8a9e}
+.pede:focus-within{border-color:var(--violeta);box-shadow:0 0 0 3px rgba(87,0,255,.18)}
+.pede .btn{min-height:48px;white-space:nowrap}
+.pede.erro{border-color:#d33}
+@media(max-width:520px){.pede{flex-direction:column;border-radius:22px;padding:8px}.pede input{min-height:48px}.pede .btn{width:100%}}
+/* celular bloqueado com notificações */
+.tranca{margin:0}
+.tranca figcaption{margin-top:18px;text-align:center;font-size:13px;color:var(--suave)}
+.tela-lock{background:radial-gradient(120% 70% at 30% 0%,#7a3cff 0%,#3a00b0 45%,#140a33 100%);color:#fff}
+.lock-top{text-align:center;padding-top:58px}
+.hora{display:block;font:300 58px/1 var(--disp);letter-spacing:-.02em}
+.data{display:block;font-size:13px;opacity:.85;margin-top:8px}
+.pilha{position:absolute;left:10px;right:10px;top:170px;display:flex;flex-direction:column;gap:8px}
+.nt{display:flex;gap:10px;align-items:flex-start;padding:10px 11px;border-radius:16px;background:rgba(255,255,255,.88);color:var(--tinta);backdrop-filter:blur(12px);
+ box-shadow:0 10px 24px -14px rgba(0,0,0,.5);font-size:12.5px;line-height:1.3;max-height:0;opacity:0;padding-block:0;overflow:hidden;transform:translateY(-10px) scale(.96);
+ transition:max-height .5s,opacity .4s,transform .5s cubic-bezier(.2,1.4,.4,1),padding .4s}
+.nt.on{max-height:90px;opacity:1;transform:none;padding-block:10px}
+.nt-ico{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:#fff;flex:none}
+.nt-ico .ic,.nt-ico .st{width:16px;height:16px;margin:0;color:#fff}
+.nt-zap .nt-ico{background:var(--zap)}.nt-goo .nt-ico{background:#f2a600}.nt-pix .nt-ico{background:#32bcad}.nt-map .nt-ico{background:#1a73e8}.nt-tel .nt-ico{background:#5700FF}
+.nt-txt{display:flex;flex-direction:column;min-width:0}
+.nt-txt small{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:#6e6a7c}.nt-txt small i{font-style:normal}
+.nt-txt b{font-weight:700}
+.nt-txt span{color:#3b3848}
+.nt.novo{animation:pisca .9s}
+@keyframes pisca{0%{box-shadow:0 0 0 0 rgba(255,255,255,.9)}100%{box-shadow:0 0 0 14px rgba(255,255,255,0)}}
+/* painel de resultados */
+.res{padding:96px 0;background:var(--tinta);color:#cfc9df}
+.res h2{color:#fff}.res .lead{color:#bdb7cf;margin-top:16px}
+.res-cab{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end}
+@media(max-width:860px){.res-cab{grid-template-columns:1fr;gap:0}}
+.painel{margin-top:44px;background:#fff;color:var(--texto);border-radius:28px;padding:24px;box-shadow:0 40px 80px -40px rgba(87,0,255,.7)}
+.p-top{display:flex;justify-content:space-between;align-items:center;padding:0 4px 18px;border-bottom:1px solid var(--linha)}
+.p-nome b{display:block;font:600 18px var(--disp);color:var(--tinta)}.p-nome small{color:var(--suave);font-size:13px}
+.p-vivo{white-space:nowrap;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--zap-2);background:#e6f7ed;padding:6px 12px;border-radius:999px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0}
+.kpi{border-radius:18px;padding:18px;background:var(--lilas-2);display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:center}
+.k-ico{grid-row:span 2;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff}
+.k-ico .ic{width:19px;height:19px}
+.kpi-zap .k-ico{background:var(--zap)}.kpi-tel .k-ico{background:var(--violeta)}.kpi-map .k-ico{background:#1a73e8}.kpi-vis .k-ico{background:#f2a600}
+.k-n{font:700 32px/1 var(--disp);color:var(--tinta)}
+.k-l{font-size:14px;color:var(--texto)}
+.k-d{grid-column:1/-1;font-size:13px;font-weight:600;color:var(--zap-2);margin-top:6px}
+.p-baixo{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
+.grafico{background:var(--lilas-2);border-radius:18px;padding:18px 18px 14px}
+.g-t{font-size:14px;font-weight:600;color:var(--tinta);margin-bottom:14px}
+.barras{height:170px;display:flex;align-items:flex-end;gap:8px}
+.barras span{flex:1;height:var(--h);display:flex;align-items:flex-end}
+.barras i{display:block;width:100%;height:100%;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#8a55ff,var(--violeta));transform-origin:bottom;transform:scaleY(.04);transition:transform .9s cubic-bezier(.2,.9,.3,1)}
+.barras span:last-child i{background:linear-gradient(180deg,#3ddc84,var(--zap))}
+.painel.vis .barras i{transform:scaleY(1)}
+.feed{list-style:none;margin:0;padding:6px 4px;display:flex;flex-direction:column}
+.feed li{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--linha);font-size:14px}
+.feed li:last-child{border:0}
+.feed b{display:block;color:var(--tinta);font-weight:600}.feed small{color:var(--suave)}
+.feed time{font-size:12px;color:var(--suave);white-space:nowrap}
+.f-ico{width:32px;height:32px;border-radius:10px;background:var(--lilas);color:var(--violeta);display:grid;place-items:center}
+.f-ico .ic,.f-ico .st{width:15px;height:15px;color:var(--violeta)}
+.nota{margin-top:16px;font-size:13.5px;color:var(--suave);max-width:72ch}
+.res .nota{color:#8f89a3}
+@media(max-width:900px){.kpis{grid-template-columns:1fr 1fr}.p-baixo{grid-template-columns:1fr}}
+@media(max-width:420px){.painel{padding:16px;border-radius:22px}.kpi{padding:14px;grid-template-columns:1fr}.k-ico{grid-row:auto;width:34px;height:34px}.k-n{font-size:26px}}
+/* antes e depois */
+.ad{padding:96px 0}
+.ad-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:44px}
+.g-card{border-radius:24px;padding:24px;border:1px solid var(--linha);background:#fff}
+.g-depois{border:2px solid var(--zap);box-shadow:0 30px 60px -36px rgba(31,175,90,.7)}
+.g-antes{background:#faf9fc}
+.g-rot{font:600 14px var(--disp);margin-bottom:16px}
+.g-antes .g-rot{color:#b42318}.g-depois .g-rot{color:var(--zap-2)}
+.g-res{display:flex;gap:14px;align-items:center;padding:14px;border-radius:16px;background:#fff;border:1px solid var(--linha)}
+.g-foto{width:64px;height:64px;border-radius:12px;flex:none;background:url(/img/port/maracatu.webp) center 38%/cover}
+.g-foto-vazia{background:repeating-linear-gradient(45deg,#e9e6f0 0 8px,#f3f1f7 8px 16px)}
+.g-res b{display:block;color:var(--tinta);font-size:16px}
+.g-st{display:flex;align-items:center;gap:2px;font-size:13px;color:var(--texto);margin:2px 0}
+.g-st .st{width:12px;height:12px;color:#f2a600}
+.g-mut{display:block;font-size:13px;color:#b42318}.g-ok{display:block;font-size:13px;color:var(--zap-2);font-weight:600}
+.g-btns{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}
+.g-btns span{font-size:13px;font-weight:600;padding:7px 14px;border-radius:999px;border:1px solid var(--linha);color:var(--suave)}
+.g-btns span.on{background:var(--lilas);border-color:transparent;color:var(--violeta)}
+.g-card ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:15px}
+.g-card li{display:flex;gap:10px}
+.xm{width:16px;height:16px;flex:none;color:#b42318;margin-top:.25em}.okc{width:16px;height:16px;flex:none;color:var(--zap);margin-top:.25em}
+@media(max-width:780px){.ad-grid{grid-template-columns:1fr}}
+/* calculadora */
+.calc{padding:0 0 96px}
+.calc-box{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;background:var(--lilas);border-radius:32px;padding:44px}
+.calc .lead{margin:14px 0 28px}
+.campo{display:block;font-weight:600;color:var(--tinta);margin-bottom:22px;font-size:16px}
+.din{display:flex;align-items:center;gap:8px;margin-top:10px;background:#fff;border:1px solid var(--linha);border-radius:16px;padding:0 16px;max-width:260px}
+.din b{color:var(--suave);font-weight:600}
+.din input{border:0;outline:none;font:700 24px var(--disp);color:var(--tinta);width:100%;min-height:56px;background:transparent}
+.din:focus-within{border-color:var(--violeta)}
+input[type=range]{display:block;width:100%;margin-top:14px;accent-color:var(--violeta);height:28px}
+.calc-out{background:var(--tinta);color:#fff;border-radius:24px;padding:32px;display:flex;flex-direction:column;justify-content:center}
+.co-l{font-size:14px;color:#bdb7cf}
+.co-n{font:800 clamp(38px,5vw,56px)/1.05 var(--disp);color:#fff;margin:6px 0 18px;text-shadow:3px 3px 0 var(--violeta)}
+.co-a{font:700 26px var(--disp);color:#c9b6ff;margin-top:4px}
+.co-paga{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.15);font-size:15px;color:#e3d9ff}
+@media(max-width:860px){.calc-box{grid-template-columns:1fr;padding:28px 20px;gap:24px}}
+.final .pede{margin-top:6px}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "@id": "https://centralcompany.com.br/#central", "name": "Central", "description": "Criação de sites, Perfil da Empresa no Google e anúncios para negócios locais. Prévia grátis do site antes de fechar.", "url": "https://centralcompany.com.br/", "logo": "https://centralcompany.com.br/img/marca-escura.svg", "image": "https://centralcompany.com.br/img/og-sites.jpg", "telephone": "+55 11 94191-3076", "address": {"@type": "PostalAddress", "addressLocality": "São Paulo", "addressRegion": "SP", "addressCountry": "BR"}, "areaServed": [{"@type": "Place", "name": "Mooca, São Paulo"}, {"@type": "Place", "name": "Brás, São Paulo"}, {"@type": "Place", "name": "São Paulo"}, {"@type": "Country", "name": "Brasil"}], "knowsAbout": ["criação de sites", "Perfil da Empresa no Google", "Google Ads", "anúncios no Instagram", "sites para prestadores de serviço"], "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Sites e anúncios", "itemListElement": [{"@type": "Offer", "name": "Site Essencial", "price": "500", "priceCurrency": "BRL", "description": "Para quem precisa ser encontrado."}, {"@type": "Offer", "name": "Site Profissional", "price": "900", "priceCurrency": "BRL", "description": "Para quem quer receber mais pedidos."}, {"@type": "Offer", "name": "Site Completo", "price": "1500", "priceCurrency": "BRL", "description": "Para quem vai investir em anúncio."}, {"@type": "Offer", "name": "Manutenção", "price": "59", "priceCurrency": "BRL", "description": "Hospedagem, domínio, duas alterações por mês e relatório de cliques no WhatsApp.", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "59", "priceCurrency": "BRL", "unitText": "mês"}}, {"@type": "Offer", "name": "Anúncios no Google", "price": "450", "priceCurrency": "BRL", "description": "A gente cria, acompanha e ajusta a campanha toda semana.", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "450", "priceCurrency": "BRL", "unitText": "mês"}}, {"@type": "Offer", "name": "Google + Instagram", "price": "650", "priceCurrency": "BRL", "description": "Campanhas no Google e no Instagram, com o mesmo acompanhamento.", "priceSpecification": {"@type": "UnitPriceSpecification", "price": "650", "priceCurrency": "BRL", "unitText": "mês"}}]}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Quanto custa um site com vocês?", "acceptedAnswer": {"@type": "Answer", "text": "Os sites custam R$ 500, R$ 900 ou R$ 1.500, pagos uma vez. Depois, a manutenção com hospedagem e domínio sai R$ 59 por mês."}}, {"@type": "Question", "name": "Preciso pagar pela prévia?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A prévia é grátis e sem compromisso. Você vê o site do seu negócio funcionando no celular e só fecha se gostar."}}, {"@type": "Question", "name": "O que eu preciso mandar para começar?", "acceptedAnswer": {"@type": "Answer", "text": "Só o nome do seu negócio. A gente pesquisa o que já existe sobre você no Google e monta a prévia. Fotos e logo ajudam, mas não são obrigatórios no começo."}}, {"@type": "Question", "name": "Em quanto tempo o site fica pronto?", "acceptedAnswer": {"@type": "Answer", "text": "Depende do pacote e de quanto ajuste você quiser. O prazo é combinado antes de começar, e você acompanha tudo pelo WhatsApp."}}, {"@type": "Question", "name": "O valor do anúncio já está incluso no mensal de tráfego?", "acceptedAnswer": {"@type": "Answer", "text": "Não. O mensal paga o nosso trabalho de criar e acompanhar a campanha. O valor do anúncio você paga direto para o Google ou o Instagram, e sugerimos começar com R$ 300 a R$ 600 por mês."}}, {"@type": "Question", "name": "O site faz o Google e o ChatGPT recomendarem meu negócio?", "acceptedAnswer": {"@type": "Answer", "text": "Ninguém pode garantir isso. O que fazemos é deixar as informações do seu negócio completas e organizadas no site e no Google, o que ajuda buscadores e assistentes de IA a entenderem o que você faz e onde você atende."}}, {"@type": "Question", "name": "Vocês atendem fora da Mooca?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. A Central fica na Mooca e conhece bem o comércio do Brás e da Bresser, mas todo o processo é pelo WhatsApp, então atendemos qualquer cidade."}}, {"@type": "Question", "name": "Vocês fazem sistemas e outras coisas além de site?", "acceptedAnswer": {"@type": "Answer", "text": "Fazemos sistemas de gestão, cardápio digital, totem de autoatendimento e automação no WhatsApp. Esses projetos são orçados à parte, depois de uma conversa."}}]}</script>
 </head>
 <body>
 <header><div class="wrap">
 <a class="marca" href="/" aria-label="Central, página inicial"><img src="/img/marca-escura.svg" alt="Central" width="143" height="30"></a>
-<nav aria-label="Principal"><a href="#como">Como funciona</a><a href="#sites">Sites feitos</a><a href="#pacotes">Preços</a><a href="#duvidas">Dúvidas</a></nav>
+<nav aria-label="Principal"><a href="#resultado">Resultado</a><a href="#como">Como funciona</a><a href="#sites">Sites feitos</a><a href="#pacotes">Preços</a></nav>
 <a class="btn btn-zap" href="https://wa.me/5511941913076?text=Ol%C3%A1%21%20Quero%20ver%20uma%20pr%C3%A9via%20gr%C3%A1tis%20do%20site%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg><span>Pedir prévia</span></a>
 </div></header>
 <main>
 <section class="hero"><div class="wrap">
-<div>
-<h1>Seu negócio no Google. Seus pedidos no WhatsApp.</h1>
-<p class="lead">A Central faz o site, arruma o seu Perfil da Empresa no Google e cuida dos anúncios. Antes de pagar qualquer coisa, você vê uma prévia do site do seu negócio funcionando no celular.</p>
-<div class="acoes"><a class="btn btn-zap" href="https://wa.me/5511941913076?text=Ol%C3%A1%21%20Quero%20ver%20uma%20pr%C3%A9via%20gr%C3%A1tis%20do%20site%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg><span>Quero minha prévia grátis</span></a><a class="btn btn-linha" href="#sites">Ver sites que fizemos</a></div>
+<div class="hero-txt">
+<h1>Seu celular apitando com cliente novo.</h1>
+<p class="lead">É isso que um site bem feito, o Google arrumado e um anúncio no lugar certo fazem por um negócio local. A Central monta tudo, e você vê uma prévia grátis do seu site antes de pagar.</p>
+<form class="pede" data-wa="5511941913076" novalidate>
+<label for="neg-1" class="sr">Nome do seu negócio</label>
+<input id="neg-1" name="negocio" placeholder="Nome do seu negócio" autocomplete="organization" required>
+<button class="btn btn-zap" type="submit"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg><span>Ver minha prévia grátis</span></button>
+</form>
 <p class="resp"><span class="pulso" aria-hidden="true"></span><span><b>Resposta no WhatsApp em até 10 minutos.</b> Somos da Mooca, São Paulo.</span></p>
 </div>
-<div class="palco" aria-hidden="true">
-<div class="cel"><div class="tela"><img id="hero-img" src="/img/port/maracatu.webp" alt="" width="375" height="2436" class="rola"></div></div>
-<div class="aviso" id="aviso"><span class="ico"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg></span><span><small>WhatsApp · agora</small><b>Novo cliente:</b> “Oi! Vi o site de vocês no Google, fazem orçamento?”</span></div>
-<div class="selo-site">Site no ar ✓</div>
-</div>
+<figure class="palco tranca">
+<div class="cel"><div class="tela tela-lock">
+<div class="lock-top"><span class="hora" id="hora">10:24</span><span class="data" id="data">terça-feira, 27 de outubro</span></div>
+<div class="pilha" id="pilha" aria-hidden="true"><div class="nt nt-zap"><span class="nt-ico"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg></span><span class="nt-txt"><small>WhatsApp<i>agora</i></small><b>Marcos</b><span>Oi! Achei vocês no Google. Fazem orçamento para sábado?</span></span></div><div class="nt nt-goo"><span class="nt-ico"><svg class="st" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg></span><span class="nt-txt"><small>Perfil da Empresa<i>agora</i></small><b>Nova avaliação ★★★★★</b><span>“Atendimento rápido, recomendo demais.”</span></span></div><div class="nt nt-pix"><span class="nt-ico"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.2H112.6C132.6 391.2 151.5 383.4 165.7 369.2L242.4 292.5zM262.5 218.9C256.1 224.4 247.9 224.5 242.4 218.9L165.7 142.2C151.5 127.1 132.6 120.2 112.6 120.2H103.3L200.7 22.76C231.1-7.586 280.3-7.586 310.6 22.76L407.8 119.9H392.6C372.6 119.9 353.7 127.7 339.5 141.9L262.5 218.9zM112.6 142.7C126.4 142.7 139.1 148.3 149.7 158.1L226.4 234.8C233.6 241.1 243 245.6 252.5 245.6C261.9 245.6 271.3 241.1 278.5 234.8L355.5 157.8C365.3 148.1 378.8 142.5 392.6 142.5H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.8 368.9 365.3 363.3 355.5 353.5L278.5 276.5C264.6 262.6 240.3 262.6 226.4 276.6L149.7 353.2C139.1 363 126.4 368.6 112.6 368.6H80.78L22.76 310.6C-7.586 280.3-7.586 231.1 22.76 200.8L80.78 142.7H112.6z"/></svg></span><span class="nt-txt"><small>Pix<i>agora</i></small><b>Pix recebido</b><span>R$ 380,00 de Ana Paula</span></span></div><div class="nt nt-map"><span class="nt-ico"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M512 96c0 50.2-59.1 125.1-84.6 155c-3.8 4.4-9.4 6.1-14.5 5H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c53 0 96 43 96 96s-43 96-96 96H139.6c8.7-9.9 19.3-22.6 30-36.8c6.3-8.4 12.8-17.6 19-27.2H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320c-53 0-96-43-96-96s43-96 96-96h39.8c-21-31.5-39.8-67.7-39.8-96c0-53 43-96 96-96s96 43 96 96zM117.1 489.1c-3.8 4.3-7.2 8.1-10.1 11.3l-1.8 2-.2-.2c-6 4.6-14.6 4-20-1.8C59.8 473 0 402.5 0 352c0-53 43-96 96-96s96 43 96 96c0 30-21.1 67-43.5 97.9c-10.7 14.7-21.7 28-30.8 38.5l-.6 .7zM128 352a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM416 128a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg></span><span class="nt-txt"><small>Google Maps<i>agora</i></small><b>3 pessoas pediram rota</b><span>até o seu endereço hoje</span></span></div><div class="nt nt-zap"><span class="nt-ico"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg></span><span class="nt-txt"><small>WhatsApp<i>agora</i></small><b>Juliana</b><span>Vi o site. Pode me mandar o valor dos dois serviços?</span></span></div><div class="nt nt-tel"><span class="nt-ico"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg></span><span class="nt-txt"><small>Ligação<i>agora</i></small><b>Chamada pelo Google</b><span>Cliente novo ligou do anúncio</span></span></div></div>
+</div></div>
+<figcaption>Ilustração do que chega no celular de quem tem o negócio bem posicionado.</figcaption>
+</figure>
 </div></section>
 
-<section class="faz" id="o-que-fazemos"><div class="wrap">
-<h2>Tudo o que um negócio local precisa para ser achado</h2>
-<div class="grade">
-<div class="item"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M16 64C16 28.7 44.7 0 80 0H304c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H80c-35.3 0-64-28.7-64-64V64zM144 448c0 8.8 7.2 16 16 16h64c8.8 0 16-7.2 16-16s-7.2-16-16-16H160c-8.8 0-16 7.2-16 16zM304 64H80V384H304V64z"/></svg><h3>Site que abre rápido no celular</h3><p>Seus serviços, fotos, endereço e um botão de WhatsApp em todo canto. O cliente entende o que você faz em segundos e já chama.</p></div>
-<div class="item"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg><h3>Google arrumado</h3><p>Perfil da Empresa com horário, fotos, categoria e link certos. É ali que a maioria das pessoas da região procura antes de sair de casa.</p></div>
-<div class="item"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M480 32c0-12.9-7.8-24.6-19.8-29.6s-25.7-2.2-34.9 6.9L381.7 53c-48 48-113.1 75-181 75H192 160 64c-35.3 0-64 28.7-64 64v96c0 35.3 28.7 64 64 64l0 128c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V352l8.7 0c67.9 0 133 27 181 75l43.6 43.6c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V300.4c18.6-8.8 32-32.5 32-60.4s-13.4-51.6-32-60.4V32zm-64 76.7V240 371.3C357.2 317.8 280.5 288 200.7 288H192V192h8.7c79.8 0 156.5-29.8 215.3-83.3z"/></svg><h3>Anúncios que trazem conversa</h3><p>Campanhas no Google e no Instagram para quem está procurando o seu serviço agora, com relatório de quantas pessoas chamaram no WhatsApp.</p></div>
+<section class="res" id="resultado"><div class="wrap">
+<div class="res-cab">
+<h2>Você acompanha cada cliente que chegou</h2>
+<p class="lead">Todo mês você recebe um painel simples: quantas pessoas chamaram no WhatsApp, ligaram, pediram rota até você e viram seu site. Sem achismo, você vê o que o site está trazendo.</p>
 </div>
+<div class="painel" id="painel">
+<div class="p-top"><span class="p-nome"><b>Painel do seu negócio</b><small>outubro · exemplo</small></span><span class="p-vivo"><span class="pulso"></span>ao vivo</span></div>
+<div class="kpis"><div class="kpi kpi-zap"><span class="k-ico"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg></span><span class="k-n" data-n="47">0</span><span class="k-l">Chamaram no WhatsApp</span><span class="k-d">+18 que no mês anterior</span></div><div class="kpi kpi-tel"><span class="k-ico"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg></span><span class="k-n" data-n="19">0</span><span class="k-l">Ligaram pelo Google</span><span class="k-d">+6</span></div><div class="kpi kpi-map"><span class="k-ico"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M512 96c0 50.2-59.1 125.1-84.6 155c-3.8 4.4-9.4 6.1-14.5 5H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c53 0 96 43 96 96s-43 96-96 96H139.6c8.7-9.9 19.3-22.6 30-36.8c6.3-8.4 12.8-17.6 19-27.2H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320c-53 0-96-43-96-96s43-96 96-96h39.8c-21-31.5-39.8-67.7-39.8-96c0-53 43-96 96-96s96 43 96 96zM117.1 489.1c-3.8 4.3-7.2 8.1-10.1 11.3l-1.8 2-.2-.2c-6 4.6-14.6 4-20-1.8C59.8 473 0 402.5 0 352c0-53 43-96 96-96s96 43 96 96c0 30-21.1 67-43.5 97.9c-10.7 14.7-21.7 28-30.8 38.5l-.6 .7zM128 352a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM416 128a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg></span><span class="k-n" data-n="33">0</span><span class="k-l">Pediram rota até você</span><span class="k-d">+11</span></div><div class="kpi kpi-vis"><span class="k-ico"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/></svg></span><span class="k-n" data-n="1240">0</span><span class="k-l">Viram seu site</span><span class="k-d">+310</span></div></div>
+<div class="p-baixo">
+<div class="grafico"><p class="g-t">Contatos por semana</p><div class="barras"><span style="--h:29%"><i></i></span><span style="--h:44%"><i></i></span><span style="--h:37%"><i></i></span><span style="--h:54%"><i></i></span><span style="--h:46%"><i></i></span><span style="--h:66%"><i></i></span><span style="--h:59%"><i></i></span><span style="--h:76%"><i></i></span><span style="--h:68%"><i></i></span><span style="--h:85%"><i></i></span><span style="--h:80%"><i></i></span><span style="--h:100%"><i></i></span></div></div>
+<ul class="feed"><li><span class="f-ico"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg></span><span><b>Clique no WhatsApp</b><small>página Box para banheiro</small></span><time>há 2 min</time></li><li><span class="f-ico"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M512 96c0 50.2-59.1 125.1-84.6 155c-3.8 4.4-9.4 6.1-14.5 5H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c53 0 96 43 96 96s-43 96-96 96H139.6c8.7-9.9 19.3-22.6 30-36.8c6.3-8.4 12.8-17.6 19-27.2H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320c-53 0-96-43-96-96s43-96 96-96h39.8c-21-31.5-39.8-67.7-39.8-96c0-53 43-96 96-96s96 43 96 96zM117.1 489.1c-3.8 4.3-7.2 8.1-10.1 11.3l-1.8 2-.2-.2c-6 4.6-14.6 4-20-1.8C59.8 473 0 402.5 0 352c0-53 43-96 96-96s96 43 96 96c0 30-21.1 67-43.5 97.9c-10.7 14.7-21.7 28-30.8 38.5l-.6 .7zM128 352a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM416 128a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg></span><span><b>Pedido de rota</b><small>Google Maps</small></span><time>há 9 min</time></li><li><span class="f-ico"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg></span><span><b>Ligação</b><small>anúncio do Google</small></span><time>há 21 min</time></li><li><span class="f-ico"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg></span><span><b>Clique no WhatsApp</b><small>página inicial</small></span><time>há 34 min</time></li><li><span class="f-ico"><svg class="st" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg></span><span><b>Nova avaliação ★★★★★</b><small>Perfil da Empresa</small></span><time>há 1 h</time></li></ul>
+</div>
+</div>
+<p class="nota">Exemplo do painel que vem com a manutenção. Os números acima são ilustrativos; no seu painel aparecem os seus.</p>
+</div></section>
+<section class="ad"><div class="wrap">
+<h2>O cliente decide em segundos no Google</h2>
+<p class="lead" style="margin-top:16px">Quando alguém da região procura o seu serviço, aparecem você e os concorrentes lado a lado. Ganha quem passa mais confiança.</p>
+<div class="ad-grid">
+<article class="g-card g-antes"><p class="g-rot">Antes</p>
+<div class="g-res"><div class="g-foto g-foto-vazia"></div><div><b>Seu Negócio</b><span class="g-st">3,9 <svg class="st" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg> (7)</span><span class="g-mut">Fechado agora? · horário não confirmado</span></div></div>
+<div class="g-btns"><span>Ligar</span></div>
+<ul><li><svg class="xm" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg><span>Sem site, só o nome e um telefone</span></li><li><svg class="xm" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg><span>Horário desatualizado, a pessoa chega e está fechado</span></li><li><svg class="xm" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg><span>Duas fotos escuras tiradas há anos</span></li><li><svg class="xm" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg><span>Nenhuma resposta às avaliações</span></li></ul></article>
+<article class="g-card g-depois"><p class="g-rot">Depois</p>
+<div class="g-res"><div class="g-foto"></div><div><b>Seu Negócio</b><span class="g-st">4,8 <svg class="st" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg class="st" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg class="st" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg class="st" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg class="st" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg> (126)</span><span class="g-ok">Aberto · fecha às 18h</span></div></div>
+<div class="g-btns"><span class="on">Site</span><span class="on">WhatsApp</span><span>Rotas</span><span>Ligar</span></div>
+<ul><li><svg class="okc" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg><span>Site com seus serviços e botão de WhatsApp</span></li><li><svg class="okc" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg><span>Horário, endereço e categoria certos</span></li><li><svg class="okc" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg><span>Fotos boas dos seus trabalhos</span></li><li><svg class="okc" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg><span>Avaliações respondidas, nota aparecendo</span></li></ul></article>
+</div>
+<p class="nota">Exemplo para ilustrar. Na prévia grátis a gente mostra como está o seu perfil hoje.</p>
 </div></section>
 
 <section class="como" id="como"><div class="wrap">
@@ -208,6 +342,21 @@ footer a{color:#fff;text-decoration:none}
 </div>
 </div></section>
 
+<section class="calc" id="conta"><div class="wrap"><div class="calc-box">
+<div>
+<h2>Faça a conta do seu negócio</h2>
+<p class="lead">Quanto você cobra, em média, por um serviço ou venda? E quantos clientes novos por mês fariam diferença?</p>
+<label class="campo">Valor médio de um serviço<span class="din"><b>R$</b><input id="c-valor" type="number" inputmode="numeric" min="20" step="10" value="250"></span></label>
+<label class="campo">Clientes novos por mês: <output id="c-qtd-o">4</output><input id="c-qtd" type="range" min="1" max="30" value="4"></label>
+</div>
+<div class="calc-out" aria-live="polite">
+<p class="co-l">A mais no seu mês</p>
+<p class="co-n" id="c-mes">R$ 1.000</p>
+<p class="co-l">Em um ano</p>
+<p class="co-a" id="c-ano">R$ 12.000</p>
+<p class="co-paga" id="c-paga">O site Profissional (R$ 900) se paga com 4 clientes.</p>
+</div>
+</div><p class="nota">Conta simples para você ter noção. O resultado de cada negócio depende do serviço, da região e da concorrência.</p></div></section>
 <section class="pac" id="pacotes"><div class="wrap">
 <h2>Preço fechado, pago uma vez</h2>
 <p class="lead" style="margin-top:16px">Escolha pelo que você quer que o site faça pelo seu negócio. A prévia é grátis em qualquer um deles.</p>
@@ -216,11 +365,6 @@ footer a{color:#fff;text-decoration:none}
 <p class="obs">Nos planos de anúncio, o valor da campanha é pago por você direto ao Google ou ao Instagram. Sugerimos começar com R$ 300 a R$ 600 por mês.</p>
 </div></section>
 
-<section class="tambem"><div class="wrap"><div class="box">
-<div><h2>Precisa de um sistema, cardápio digital ou totem?</h2>
-<p>Também fazemos sistemas de gestão, cardápio digital, totem de autoatendimento e automação no WhatsApp. Conte o que você precisa e a gente orça.</p></div>
-<a class="btn btn-linha" href="https://wa.me/5511941913076?text=Ol%C3%A1%21%20Quero%20conversar%20sobre%20um%20sistema/projeto%20sob%20medida." target="_blank" rel="noopener">Contar meu projeto</a>
-</div></div></section>
 
 <section class="faq" id="duvidas"><div class="wrap"><div class="grid">
 <h2>Dúvidas comuns</h2>
@@ -229,8 +373,12 @@ footer a{color:#fff;text-decoration:none}
 
 <section class="final"><div class="wrap">
 <h2>Quer ver como ficaria o site do seu negócio?</h2>
-<p class="lead">Mande o nome do seu negócio no WhatsApp. A prévia é grátis e você não tem compromisso nenhum.</p>
-<a class="btn btn-zap" href="https://wa.me/5511941913076?text=Ol%C3%A1%21%20Quero%20ver%20uma%20pr%C3%A9via%20gr%C3%A1tis%20do%20site%20do%20meu%20neg%C3%B3cio." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg><span>Quero minha prévia grátis</span></a>
+<p class="lead">Escreva o nome do seu negócio. A gente responde no WhatsApp e monta a prévia grátis, sem compromisso.</p>
+<form class="pede" data-wa="5511941913076" novalidate>
+<label for="neg-2" class="sr">Nome do seu negócio</label>
+<input id="neg-2" name="negocio" placeholder="Nome do seu negócio" autocomplete="organization" required>
+<button class="btn btn-zap" type="submit"><svg class="ic" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg><span>Ver minha prévia grátis</span></button>
+</form>
 </div></section>
 </main>
 <footer><div class="wrap">
@@ -252,6 +400,36 @@ if(av&&!reduz){const ciclo=()=>{av.classList.add('on');setTimeout(()=>av.classLi
 const abas=[...document.querySelectorAll('.aba')],img=document.getElementById('port-img');
 const sel=a=>{abas.forEach(b=>b.setAttribute('aria-selected',b===a));img.style.animation='none';img.src=a.dataset.img;img.alt='Site de '+a.dataset.nome+' no celular';document.getElementById('port-desc').textContent=a.querySelector('p').textContent;img.style.transform='translateY(0)';requestAnimationFrame(()=>{img.style.animation=''})};
 abas.forEach((a,i)=>{a.addEventListener('click',()=>sel(a));a.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();const n=abas[(i+1)%abas.length];n.focus();sel(n)}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();const n=abas[(i-1+abas.length)%abas.length];n.focus();sel(n)}})});
+})();
+</script>
+<script>
+(()=>{
+const reduz=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// data e hora reais no celular
+const h=document.getElementById('hora'),d=document.getElementById('data');
+const rel=()=>{const n=new Date();if(h)h.textContent=n.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});if(d)d.textContent=n.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'})};rel();setInterval(rel,30000);
+// notificações chegando uma a uma, a mais nova em cima
+const pilha=document.getElementById('pilha');
+if(pilha){const todas=[...pilha.children];let i=0;const MAX=5;
+ const chega=()=>{const n=todas[i%todas.length];i++;n.classList.remove('on','novo');pilha.prepend(n);void n.offsetWidth;n.classList.add('on','novo');
+  const vis=[...pilha.children].filter(x=>x.classList.contains('on'));if(vis.length>MAX)vis[vis.length-1].classList.remove('on')};
+ if(reduz){todas.slice(0,4).forEach(n=>n.classList.add('on'))}else{chega();setTimeout(chega,700);setInterval(chega,2600)}}
+// painel: números sobem quando aparece
+const p=document.getElementById('painel');
+if(p){const sobe=()=>{p.classList.add('vis');p.querySelectorAll('.k-n').forEach(el=>{const alvo=+el.dataset.n,t0=performance.now(),dur=reduz?0:1400;
+  const f=t=>{const k=dur?Math.min(1,(t-t0)/dur):1;el.textContent=Math.round(alvo*(1-Math.pow(1-k,3))).toLocaleString('pt-BR');if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)})};
+ if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){sobe();io.disconnect()}},{threshold:.3});io.observe(p)}else sobe()}
+// calculadora
+const v=document.getElementById('c-valor'),q=document.getElementById('c-qtd');
+if(v&&q){const brl=x=>'R$ '+Math.round(x).toLocaleString('pt-BR');
+ const conta=()=>{const val=Math.max(0,+v.value||0),qt=+q.value;document.getElementById('c-qtd-o').textContent=qt;
+  document.getElementById('c-mes').textContent=brl(val*qt);document.getElementById('c-ano').textContent=brl(val*qt*12);
+  const n=val>0?Math.ceil(900/val):0;document.getElementById('c-paga').textContent=n?('O site Profissional (R$ 900) se paga com '+n+(n===1?' cliente.':' clientes.')):'Coloque o valor médio para ver a conta.'};
+ v.addEventListener('input',conta);q.addEventListener('input',conta);conta()}
+// formulário: abre o WhatsApp com o nome do negócio
+document.querySelectorAll('form.pede').forEach(f=>f.addEventListener('submit',e=>{e.preventDefault();const i=f.querySelector('input');const nome=i.value.trim();
+ if(!nome){f.classList.add('erro');i.focus();i.placeholder='Escreva o nome do seu negócio';return}f.classList.remove('erro');
+ const txt='Olá! Quero ver uma prévia grátis do site do meu negócio: '+nome;window.open('https://wa.me/'+f.dataset.wa+'?text='+encodeURIComponent(txt),'_blank','noopener')}));
 })();
 </script>
 </body>
