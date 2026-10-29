@@ -1,0 +1,161 @@
+{
+ "papeis": {},
+ "classes": [
+  {
+   "slug": "cacador",
+   "nome": "Caçador",
+   "arma": "Machado",
+   "funcao": "Iniciador",
+   "cor": "#FF611F",
+   "dificuldade": 1,
+   "icone": "/img/novo/armas/machado-imperial.png",
+   "resumo": "Abre a luta: chega primeiro, prende o inimigo e levanta pro time.",
+   "basico": "Golpe pesado de machado, de perto. Cada acerto empurra e abre espaço pro combo.",
+   "recomendado": "Pra quem gosta de chegar primeiro, aguentar pancada e começar o combo do time.",
+   "lore": "Cresceu caçando na beira do vazio. Aprendeu cedo que quem chega primeiro escolhe a luta.",
+   "papeis": [],
+   "habilidades": [
+    {
+     "tecla": "Q",
+     "nome": "Rodopio do Machado",
+     "descricao": "Avança pra onde você mira, prende o inimigo na lâmina do machado, gira com ele e arremessa longe, pro alto."
+    },
+    {
+     "tecla": "E",
+     "nome": "Fenda Sísmica",
+     "descricao": "A pedra rompe o chão em sequência, do seu pé até lá na frente: quem estiver no caminho voa. Lá do alto vira Queda Sísmica: você despenca e empurra quem estiver embaixo."
+    }
+   ]
+  },
+  {
+   "slug": "assassino",
+   "nome": "Assassino",
+   "arma": "Espada",
+   "funcao": "Assassino",
+   "cor": "#33E6FF",
+   "dificuldade": 3,
+   "icone": "/img/novo/armas/espada-imperial.png",
+   "resumo": "Entra rápido, prende quem errou e finaliza antes da resposta.",
+   "basico": "Corte rápido de espada, de perto.",
+   "recomendado": "Pra quem tem reflexo rápido e gosta de punir quem erra: entra, finaliza e sai.",
+   "lore": "Ninguém o vê entrar. Todo mundo vê o inimigo cair.",
+   "papeis": [],
+   "habilidades": [
+    {
+     "tecla": "Q",
+     "nome": "Corte Atravessado",
+     "descricao": "Um dash cortante pra onde você mira: atravessa o inimigo sem empurrar e deixa ele parado, atordoado, esperando o próximo golpe."
+    },
+    {
+     "tecla": "E",
+     "nome": "Mil Cortes",
+     "descricao": "Uma rajada de cortes que prende o inimigo no lugar, no chão ou no ar, e termina num golpe que arremessa longe."
+    }
+   ]
+  },
+  {
+   "slug": "arqueiro",
+   "nome": "Arqueiro",
+   "arma": "Arco",
+   "funcao": "Distância",
+   "cor": "#FFD147",
+   "dificuldade": 2,
+   "icone": "/img/novo/armas/arco-imperial.png",
+   "resumo": "Castiga de longe e escolhe onde a luta acontece.",
+   "basico": "Flecha muito rápida de longe: só dá pra desviar no reflexo.",
+   "recomendado": "Pra quem tem boa mira e gosta de controlar a distância.",
+   "lore": "Do alto da ilha, nenhuma sombra atravessa o campo sem ser vista.",
+   "papeis": [],
+   "habilidades": [
+    {
+     "tecla": "Q",
+     "nome": "Chuva de Flechas",
+     "descricao": "Segure pra ver a área e solte: uma chuva de flechas castiga quem estiver lá dentro e deixa todo mundo lento."
+    },
+    {
+     "tecla": "E",
+     "nome": "Flecha-Gancho",
+     "descricao": "Uma flecha presa numa corda que te puxa até o inimigo, já pronto pro combo, ou até o ponto mirado: parede, telhado, chão."
+    }
+   ]
+  },
+  {
+   "slug": "mago",
+   "nome": "Mago",
+   "arma": "Cajado",
+   "funcao": "Elementos",
+   "cor": "#AE52FF",
+   "dificuldade": 3,
+   "icone": "/img/novo/armas/cajado-imperial.png",
+   "resumo": "Troca de elemento no meio da luta e monta o combo de longe.",
+   "basico": "Orbe de energia muito rápido, de alcance médio, na cor do elemento ativo.",
+   "recomendado": "Pra quem pensa a jogada: congela, levanta, incendeia e encadeia pro parceiro.",
+   "lore": "Estudou as rachaduras do céu até aprender a dobrar os quatro elementos.",
+   "papeis": [],
+   "habilidades": [
+    {
+     "tecla": "Q",
+     "nome": "Disparo Elemental",
+     "descricao": "Atira o elemento ativo. Fogo incendeia, Gelo congela metade do corpo, Terra levanta o chão debaixo do inimigo e o Raio pula de inimigo em inimigo."
+    },
+    {
+     "tecla": "E",
+     "nome": "Trocar Elemento",
+     "descricao": "Troca na hora entre Fogo, Gelo, Terra e Raio. Alternar sai mais rápido que repetir, e cada básico que acerta adianta a recarga. A ponta do cajado mostra pra todo mundo o que vem aí."
+    }
+   ]
+  },
+  {
+   "slug": "lanceiro",
+   "nome": "Lanceiro",
+   "arma": "Lança",
+   "funcao": "Guardião",
+   "cor": "#FF1A24",
+   "dificuldade": 1,
+   "icone": "/img/novo/armas/lanca-imperial.png",
+   "resumo": "Protege o time, fecha caminhos e afasta quem chega perto.",
+   "basico": "Estocada de lança que segura o inimigo atordoado um pouco mais.",
+   "recomendado": "Pra quem gosta de controlar o espaço e decidir por onde a luta passa.",
+   "lore": "Jurou guardar a Arena Imperial. Hoje guarda o parceiro, e ninguém passa da ponta da lança.",
+   "papeis": [],
+   "habilidades": [
+    {
+     "tecla": "Q",
+     "nome": "Giro da Lança",
+     "descricao": "Avança girando a lança: empurra todo mundo, corta dashes e leva quem estiver colado pro alto com você."
+    },
+    {
+     "tecla": "E",
+     "nome": "Muralha de Lanças",
+     "descricao": "Lanças estouram do chão numa linha: quem estiver em cima voa e a parede fecha o caminho por um tempo. Bem lá do alto vira Estocada Aérea: você mergulha com a lança apontada pra onde olha."
+    }
+   ]
+  },
+  {
+   "slug": "lutador",
+   "nome": "Lutador",
+   "arma": "Manoplas",
+   "funcao": "Brigão",
+   "cor": "#FF4D9E",
+   "dificuldade": 2,
+   "icone": "/img/novo/armas/manoplas-imperial.png",
+   "resumo": "Cola no inimigo, bate rápido e cai do céu em cima de quem estiver embaixo.",
+   "basico": "Socos alternados bem mais rápidos que as outras armas, com menos alcance: precisa colar.",
+   "recomendado": "Pra quem gosta de criar jogada no ar e de dar o golpe que abre a luta.",
+   "lore": "Sem lâmina, sem distância, sem desculpa. Só os punhos e o próximo golpe.",
+   "papeis": [],
+   "habilidades": [
+    {
+     "tecla": "Q",
+     "nome": "Gancho Ascendente",
+     "descricao": "Dash pra onde você olha e um uppercut que joga o inimigo pro alto. No ar, olhando pra baixo, mergulha e o impacto levanta quem estiver em volta."
+    },
+    {
+     "tecla": "E",
+     "nome": "Investida Dupla",
+     "descricao": "Dois dashes seguidos: suba no primeiro, mire lá de cima e mergulhe no segundo levantando todo mundo na área."
+    }
+   ]
+  }
+ ]
+}

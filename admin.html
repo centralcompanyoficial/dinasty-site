@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Painel Dinasty</title>
+<link rel="icon" href="img/icone.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--vazio:#1A0840;--vazio-2:#24104F;--roxo:#E61C39;--ouro:#FFD147;--claro:#F3EEFF;--claro-2:#B9AEDB;--verde:#5BF09A;--erro:#FF7A85}
+*{box-sizing:border-box}
+body{margin:0;background:var(--vazio);color:var(--claro);font:400 16px/1.55 Rajdhani,system-ui,sans-serif}
+h1,h2{font-family:"Bebas Neue","Arial Narrow",sans-serif;font-weight:900;text-transform:uppercase;line-height:.95;margin:0}
+h1{font-size:48px}h2{font-size:34px;margin-bottom:16px}
+.largura{width:min(1100px,100% - 32px);margin:0 auto;padding:40px 0 80px}
+header{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:30px;flex-wrap:wrap}
+header img{height:28px}
+.grade{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:860px){.grade{grid-template-columns:1fr}}
+.bloco{background:var(--vazio-2);padding:26px}
+label{display:block;font-weight:600;font-size:14px;margin:14px 0 6px}
+input,select,textarea{width:100%;padding:11px 12px;border:2px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:#fff;font:400 15px Rajdhani,sans-serif}
+textarea{min-height:130px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ouro)}
+.lado{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.check{display:flex;gap:10px;align-items:center;margin-top:14px;font-weight:500}
+.check input{width:auto}
+button{border:0;padding:13px 22px;background:var(--roxo);color:#fff;font:800 18px/1 "Bebas Neue",sans-serif;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;margin-top:18px;clip-path:polygon(4% 0,100% 0,96% 100%,0 100%)}
+button.ouro{background:var(--ouro);color:#1D1240}
+button.pequeno{padding:8px 14px;font-size:15px;margin:0}
+button.perigo{background:#A3253A}
+button:disabled{opacity:.5;cursor:wait}
+:focus-visible{outline:3px solid var(--ouro);outline-offset:2px}
+.msg{min-height:1.5em;margin-top:12px;font-weight:600}.msg.ok{color:var(--verde)}.msg.erro{color:var(--erro)}
+.item{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:14px 0;border-top:1px solid rgba(255,255,255,.08)}
+.item small{display:block;color:var(--claro-2)}
+.acoes{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.dica{color:var(--claro-2);font-size:14px;margin:6px 0 0}
+#entrar{max-width:440px;margin:12vh auto}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px}
+td,th{text-align:left;padding:6px 8px;border-top:1px solid rgba(255,255,255,.08)}
+.pilula{display:inline-block;padding:2px 8px;font-size:12px;font-weight:600;border-radius:99px;background:rgba(255,255,255,.08);color:var(--claro-2)}
+.pilula.online{background:rgba(91,240,154,.15);color:var(--verde)}.pilula.suspenso,.pilula.banido{background:rgba(255,122,133,.15);color:var(--erro)}
+.busca{display:flex;gap:10px;align-items:center}.busca input{flex:1}.busca button{margin:0}
+.ficha{margin-top:18px;padding-top:6px;border-top:2px solid rgba(255,255,255,.1)}
+.numeros{display:flex;gap:22px;margin:4px 0 6px;color:var(--claro-2);font-size:14px}.numeros b{color:var(--claro);font-size:20px}
+tr.clicavel{cursor:pointer}tr.clicavel:hover{background:rgba(255,255,255,.04)}
+[hidden]{display:none!important}
+.envio{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.envio input[type=file]{flex:1;min-width:200px;padding:9px}
+.previa-banner{width:100%;aspect-ratio:16/7;object-fit:cover;margin-top:10px;background:rgba(255,255,255,.04)}
+.premio{display:grid;grid-template-columns:100px 136px 1fr 54px auto;gap:8px;align-items:center;margin-top:8px}
+.premio input,.premio select{padding:9px 10px}
+.premio .icone{width:54px;height:54px;border:2px dashed rgba(255,255,255,.2);display:grid;place-items:center;cursor:pointer;overflow:hidden;font-size:22px;color:var(--claro-2);background:rgba(255,255,255,.03)}
+.premio .icone img{width:100%;height:100%;object-fit:contain}
+.premio .icone:focus-within{border-color:var(--ouro)}
+.premio button{margin:0;padding:8px 12px;font-size:15px}
+@media(max-width:600px){.premio{grid-template-columns:1fr 1fr}.premio .texto{grid-column:1/-1}}
+.miniaturas{display:flex;gap:4px;margin-top:4px}.miniaturas img{width:22px;height:22px;object-fit:contain}
+.editando{outline:2px solid var(--ouro);outline-offset:4px}
+</style>
+</head>
+<body>
+<div class="largura">
+
+<section id="entrar" class="bloco">
+  <h1>Painel Dinasty</h1>
+  <p class="dica">Use a senha de admin (o segredo ADMIN_KEY do Supabase).</p>
+  <form id="fEntrar">
+    <label for="chave">Senha de admin</label>
+    <input id="chave" type="password" autocomplete="current-password" required>
+    <button type="submit">Entrar</button>
+    <div class="msg" id="mEntrar" role="status"></div>
+  </form>
+</section>
+
+<div id="painel" hidden>
+  <header>
+    <img src="img/logo.png" alt="Dinasty">
+    <div><span id="estadoDiscord" class="dica"></span> <button class="pequeno" id="sair" type="button">Sair</button></div>
+  </header>
+
+  <div class="grade">
+    <section class="bloco">
+      <h2>Novo anúncio</h2>
+      <p class="dica">Sai na hora no jogo (aba Novidades), no site e no Discord.</p>
+      <form id="fAnuncio">
+        <label for="aTitulo">Título</label><input id="aTitulo" maxlength="120" required>
+        <div class="lado">
+          <div><label for="aTipo">Tipo</label>
+            <select id="aTipo"><option value="novidade">Novidade</option><option value="atualizacao">Atualização (vai pro canal de atualizações)</option><option value="evento">Evento</option><option value="campeonato">Campeonato</option><option value="manutencao">Manutenção</option></select></div>
+          <div><label for="aLink">Link (opcional)</label><input id="aLink" type="url" placeholder="https://"></div>
+        </div>
+        <label for="aTexto">Texto</label><textarea id="aTexto" maxlength="4000" required placeholder="Use **assim** pra negrito."></textarea>
+        <label for="aImagem">Link de uma imagem (opcional)</label><input id="aImagem" type="url" placeholder="https://...png">
+        <label class="check"><input id="aFixar" type="checkbox"> Fixar no topo</label>
+        <button type="submit" class="ouro">Publicar em tudo</button>
+        <div class="msg" id="mAnuncio" role="status"></div>
+      </form>
+    </section>
+
+    <section class="bloco">
+      <h2 id="tCamp">Novo campeonato</h2>
+      <p class="dica" id="dCamp">Cria o campeonato, posta a mensagem oficial no canal de campeonatos e publica o anúncio. Aparece no jogo, no launcher, no site e no Discord.</p>
+      <form id="fCamp">
+        <label for="cNome">Nome</label><input id="cNome" maxlength="100" required>
+        <div class="lado">
+          <div><label for="cModo">Modo</label><select id="cModo"><option>battle royale</option><option>arena 1v1</option><option>arena 2v2</option><option>arena 3v3</option></select></div>
+          <div><label for="cVagas">Vagas</label><input id="cVagas" type="number" min="2" max="1000" value="63"></div>
+        </div>
+        <div class="lado">
+          <div><label for="cQuando">Começa (horário de Brasília)</label><input id="cQuando" type="datetime-local" required></div>
+          <div><label for="cAte">Inscrições até (opcional)</label><input id="cAte" type="datetime-local"></div>
+        </div>
+        <label>Premiação</label>
+        <p class="dica" style="margin:0">Um prêmio por linha: colocação, tipo, o que ganha e um ícone (opcional, PNG de preferência sem fundo).</p>
+        <div id="premios"></div>
+        <button type="button" class="pequeno" id="maisPremio" style="margin-top:10px">+ Adicionar prêmio</button>
+        <label for="cDesc">Regras e descrição</label><textarea id="cDesc" maxlength="2000"></textarea>
+        <label for="cBanner">Banner (opcional, sem banner usa a arte padrão)</label>
+        <div class="envio"><input id="cBanner" type="file" accept="image/png,image/jpeg,image/webp"><button type="button" class="pequeno perigo" id="tirarBanner" hidden>Tirar banner</button></div>
+        <p class="dica">Formato largo, tipo 1600×700. Ou cole um link:</p>
+        <input id="cImagem" type="url" placeholder="https://...jpg" aria-label="Link do banner">
+        <img id="previaBanner" class="previa-banner" alt="Prévia do banner" hidden>
+        <label for="cLive">Link da live ou vídeo (opcional, mostra o botão Assistir)</label><input id="cLive" type="url">
+        <button type="submit" class="ouro" id="bCamp">Criar e anunciar</button>
+        <button type="button" id="cancelarEdicao" hidden>Cancelar edição</button>
+        <div class="msg" id="mCamp" role="status"></div>
+      </form>
+    </section>
+  </div>
+
+  <div class="grade" style="margin-top:24px">
+    <section class="bloco">
+      <h2>Anúncios no ar</h2>
+      <div id="listaAnuncios"></div>
+    </section>
+    <section class="bloco">
+      <h2>Campeonatos</h2>
+      <div id="listaCamp"></div>
+      <div id="inscritos"></div>
+    </section>
+ </div>
+
+  <section class="bloco" style="margin-top:24px">
+    <h2>Jogadores</h2>
+    <div class="numeros"><span><b id="nTotal">–</b> contas</span><span><b id="nOnline">–</b> online agora</span><span><b id="nDen">–</b> denúncias abertas</span></div>
+    <form class="busca" id="fBusca" role="search">
+      <label for="busca" class="dica" style="margin:0">Buscar</label>
+      <input id="busca" placeholder="Nick ou nome do Discord">
+      <button type="submit" class="pequeno">Buscar</button>
+    </form>
+    <div id="listaJog"></div>
+    <div id="ficha" class="ficha" hidden></div>
+  </section>
+
+  <section class="bloco" style="margin-top:24px">
+    <h2>Denúncias</h2>
+    <div class="busca"><label for="dStatus" class="dica" style="margin:0">Mostrar</label>
+      <select id="dStatus" style="max-width:220px"><option value="aberta">Abertas</option><option value="resolvida">Resolvidas</option><option value="descartada">Descartadas</option><option value="todas">Todas</option></select></div>
+    <div id="listaDen"></div>
+  </section>
+</div>
+</div>
+
+<script>
+const SUPA = "https://drjxrhjbkqcjhhqkssvz.supabase.co";
+const CHAVE = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRyanhyaGpia3FjamhocWtzc3Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MTc4NjIsImV4cCI6MjEwNzM5Mzg2Mn0.i9HC2IL-zgO8NT35pt4PqDCxHqno8h_stEKwmGnD1rY";
+const API = SUPA + "/functions/v1/dinasty-api";
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt = new Intl.DateTimeFormat("pt-BR", {timeZone: "America/Sao_Paulo", dateStyle: "short", timeStyle: "short"});
+let senha = "";
+try { senha = sessionStorage.getItem("dinasty.admin") || ""; } catch {}
+
+function chamar(rota, metodo = "GET", corpo) {
+  return fetch(API + rota, {method: metodo, headers: {"Content-Type": "application/json", apikey: CHAVE, "x-admin-key": senha}, body: corpo ? JSON.stringify(corpo) : undefined})
+    .then(async r => { const j = await r.json().catch(() => ({})); if (!r.ok) throw new Error(j.erro || "Erro " + r.status); return j; });
+}
+const ler = (q) => fetch(SUPA + "/rest/v1/" + q, {headers: {apikey: CHAVE, Authorization: "Bearer " + CHAVE}}).then(r => r.json());
+function aviso(id, texto, ok) { const m = document.getElementById(id); m.textContent = texto; m.className = "msg " + (ok ? "ok" : "erro"); }
+/** "2026-10-25T20:00" (Brasília) → ISO */
+const iso = (v) => v ? new Date(v + ":00-03:00").toISOString() : null;
+
+async function entrar() {
+  try {
+    const r = await chamar("/verificar");
+    document.getElementById("entrar").hidden = true;
+    document.getElementById("painel").hidden = false;
+    document.getElementById("estadoDiscord").textContent = r.discord ? "Discord ligado" : "Discord ainda sem /setup";
+    try { sessionStorage.setItem("dinasty.admin", senha); } catch {}
+    carregar();
+  } catch (e) {
+    try { sessionStorage.removeItem("dinasty.admin"); } catch {}
+    if (senha) aviso("mEntrar", e.message, false);
+  }
+}
+document.getElementById("fEntrar").onsubmit = (e) => { e.preventDefault(); senha = document.getElementById("chave").value; entrar(); };
+document.getElementById("sair").onclick = () => { try { sessionStorage.removeItem("dinasty.admin"); } catch {} location.reload(); };
+if (senha) entrar();
+
+function carregar() {
+  carregarJogadores();
+  carregarDenuncias();
+  ler("anuncios?select=id,titulo,tipo,fixado,criado_em&publicado=eq.true&order=criado_em.desc&limit=30").then(l => {
+    document.getElementById("listaAnuncios").innerHTML = l.length ? l.map(a =>
+      `<div class="item"><div>${esc(a.titulo)}<small>${esc(a.tipo)}${a.fixado ? ", fixado" : ""}, ${fmt.format(new Date(a.criado_em))}</small></div>
+       <div class="acoes"><button class="pequeno perigo" data-tirar="${a.id}">Tirar do ar</button></div></div>`).join("") : `<p class="dica">Nenhum anúncio no ar.</p>`;
+    document.querySelectorAll("[data-tirar]").forEach(b => b.onclick = async () => {
+      if (!confirm("Tirar esse anúncio do jogo e do site? (a mensagem no Discord continua)")) return;
+      b.disabled = true; await chamar("/anuncio?id=" + b.dataset.tirar, "DELETE").catch(e => alert(e.message)); carregar();
+    });
+  });
+  Promise.all([ler("campeonatos?select=*&order=comeca_em.desc&limit=30"), ler("campeonatos_vagas?select=id,inscritos")]).then(([cs, vs]) => {
+    const n = Object.fromEntries(vs.map(v => [v.id, v.inscritos]));
+    document.getElementById("listaCamp").innerHTML = cs.length ? cs.map(c =>
+      `<div class="item"><div>nº ${c.id}: ${esc(c.nome)}<small>${esc(c.modo)}, ${fmt.format(new Date(c.comeca_em))}, ${n[c.id] || 0}/${c.vagas} inscritos${c.vencedor ? ", campeão: " + esc(c.vencedor) : ""}${c.premio ? "<br>Prêmio: " + esc(c.premio) : ""}</small>
+         ${(c.premios || []).some(p => p.icone_url) ? `<div class="miniaturas">${c.premios.filter(p => p.icone_url).map(p => `<img src="${esc(p.icone_url)}" alt="">`).join("")}</div>` : ""}</div>
+       <div class="acoes">
+         <select data-status="${c.id}" aria-label="Situação de ${esc(c.nome)}">${["em_breve","inscricoes","em_andamento","encerrado"].map(s => `<option value="${s}" ${s === c.status ? "selected" : ""}>${{em_breve:"Em breve",inscricoes:"Inscrições abertas",em_andamento:"Acontecendo",encerrado:"Encerrado"}[s]}</option>`).join("")}</select>
+         <button class="pequeno ouro" data-editar="${c.id}">Editar</button>
+         <button class="pequeno" data-ver="${c.id}">Inscritos</button>
+         <button class="pequeno perigo" data-apagar="${c.id}" data-nome="${esc(c.nome)}">Apagar</button>
+       </div></div>`).join("") : `<p class="dica">Nenhum campeonato ainda.</p>`;
+    campeonatos = Object.fromEntries(cs.map(c => [c.id, c]));
+    document.querySelectorAll("[data-editar]").forEach(b => b.onclick = () => editarCampeonato(campeonatos[b.dataset.editar]));
+    document.querySelectorAll("[data-apagar]").forEach(b => b.onclick = async () => {
+      if (!confirm("Apagar o campeonato \"" + b.dataset.nome + "\" DE VEZ? Some do jogo, do site e do Discord, junto com as inscrições e as equipes. Não dá pra desfazer.")) return;
+      b.disabled = true;
+      await chamar("/campeonato?id=" + b.dataset.apagar, "DELETE").catch(e => alert(e.message));
+      carregar();
+    });
+    document.querySelectorAll("[data-status]").forEach(s => s.onchange = async () => {
+      const corpo = {id: +s.dataset.status, status: s.value};
+      if (s.value === "encerrado") {
+        const v = prompt("Quem venceu? (deixe vazio pra encerrar sem anunciar campeão)");
+        if (v) corpo.vencedor = v;
+      }
+      await chamar("/campeonato", "PATCH", corpo).catch(e => alert(e.message)); carregar();
+    });
+    document.querySelectorAll("[data-ver]").forEach(b => b.onclick = async () => {
+      const r = await chamar("/inscricoes?id=" + b.dataset.ver).catch(e => ({inscricoes: [], erro: e.message}));
+      document.getElementById("inscritos").innerHTML = `<h2 style="margin-top:24px">Inscritos no nº ${b.dataset.ver}</h2>` + (r.inscricoes.length ?
+        `<table><tr><th>Nick</th><th>Equipe</th><th>Discord</th><th>Por onde</th></tr>${r.inscricoes.map(i => `<tr><td>${esc(i.nick)}</td><td>${esc(i.time_nome || "")}</td><td>${esc(i.discord || "")}</td><td>${esc(i.origem)}</td></tr>`).join("")}</table>`
+        : `<p class="dica">Ninguém ainda.</p>`);
+    });
+  });
+}
+
+
+// ================= JOGADORES =================
+const SIT = {online: "Online", offline: "Offline", suspenso: "Suspenso", banido: "Banido"};
+const quando = (d) => d ? fmt.format(new Date(d)) : "–";
+const pilula = (s) => `<span class="pilula ${s}">${SIT[s] || s}</span>`;
+
+async function carregarJogadores() {
+  const busca = document.getElementById("busca").value.trim();
+  const r = await chamar("/jogadores?busca=" + encodeURIComponent(busca)).catch(e => ({erro: e.message}));
+  if (r.erro) { document.getElementById("listaJog").innerHTML = `<p class="msg erro">${esc(r.erro)}</p>`; return; }
+  nTotal.textContent = r.total; nOnline.textContent = r.online;
+  document.getElementById("listaJog").innerHTML = r.jogadores.length ?
+    `<table><tr><th>Nick</th><th>Situação</th><th>Discord</th><th>Arma main</th><th>Visto por último</th><th>Denúncias</th></tr>${r.jogadores.map(j =>
+      `<tr class="clicavel" data-jog="${j.id}" tabindex="0"><td><b>${esc(j.nick)}</b></td><td>${pilula(j.situacao)}</td><td>${esc(j.discord_nome || "–")}</td><td>${esc(j.classe_main || "–")}</td><td>${quando(j.visto_em)}</td><td>${j.denuncias_abertas ? `<span class="pilula suspenso">${j.denuncias_abertas}</span>` : "0"}</td></tr>`).join("")}</table>`
+    : `<p class="dica">Ninguém encontrado.</p>`;
+  document.querySelectorAll("[data-jog]").forEach(t => {
+    t.onclick = () => abrirFicha(t.dataset.jog);
+    t.onkeydown = (e) => { if (e.key === "Enter") abrirFicha(t.dataset.jog); };
+  });
+}
+
+async function abrirFicha(id) {
+  const f = document.getElementById("ficha");
+  f.hidden = false; f.innerHTML = `<p class="dica">Carregando…</p>`;
+  const r = await chamar("/jogador?id=" + id).catch(e => ({erro: e.message}));
+  if (r.erro) { f.innerHTML = `<p class="msg erro">${esc(r.erro)}</p>`; return; }
+  const j = r.jogador;
+  const punido = j.situacao === "suspenso" || j.situacao === "banido";
+  f.innerHTML = `
+    <h2 style="font-size:28px">${esc(j.nick)} ${pilula(j.situacao)}</h2>
+    <p class="dica">Conta criada em ${quando(j.criado_em)} · ${r.total_partidas} partidas · Discord: ${esc(j.discord_nome || "não ligado")}
+      ${punido ? `<br><b style="color:var(--erro)">${j.situacao === "banido" ? "Banido" : "Suspenso até " + quando(j.banido_ate)}: ${esc(j.ban_motivo || "")}</b>` : ""}</p>
+    <div class="grade">
+      <div>
+        <label for="pMotivo">${punido ? "Motivo (opcional)" : "Motivo da punição (o jogador vê ao tentar entrar)"}</label>
+        <input id="pMotivo" maxlength="200" placeholder="Ex.: uso de programa de trapaça">
+        <div class="acoes" style="justify-content:flex-start;margin-top:10px">
+          ${punido ? `<button class="pequeno ouro" data-liberar>Liberar conta</button>` : `
+          <button class="pequeno" data-dias="1">Suspender 1 dia</button>
+          <button class="pequeno" data-dias="7">7 dias</button>
+          <button class="pequeno" data-dias="30">30 dias</button>
+          <button class="pequeno perigo" data-perm>Banir de vez</button>`}
+        </div>
+        <div class="msg" id="mFicha" role="status"></div>
+      </div>
+      <div>
+        <label>Últimas partidas</label>
+        ${r.partidas.length ? `<table><tr><th>Quando</th><th>Arma</th><th>Modo</th><th>Lugar</th><th>Abates</th></tr>${r.partidas.map(p =>
+          `<tr><td>${quando(p.criado_em)}</td><td>${esc(p.classe)}</td><td>${esc(p.modo)}</td><td>${p.colocacao ?? "–"}º</td><td>${p.abates ?? 0}</td></tr>`).join("")}</table>` : `<p class="dica">Nenhuma partida registrada.</p>`}
+      </div>
+    </div>
+    <label>Denúncias contra ${esc(j.nick)}</label>
+    ${r.denuncias.length ? `<table><tr><th>Quando</th><th>Quem denunciou</th><th>Motivo</th><th>Detalhe</th><th>Situação</th></tr>${r.denuncias.map(d =>
+      `<tr><td>${quando(d.criado_em)}</td><td>${esc(d.denunciante)}</td><td>${esc(d.motivo)}</td><td>${esc(d.detalhe)}</td><td>${esc(d.status)}</td></tr>`).join("")}</table>` : `<p class="dica">Nenhuma.</p>`}
+    <label>Histórico de punições</label>
+    ${r.punicoes.length ? `<table><tr><th>Quando</th><th>O quê</th><th>Até</th><th>Motivo</th></tr>${r.punicoes.map(p =>
+      `<tr><td>${quando(p.criado_em)}</td><td>${esc(p.acao)}</td><td>${p.acao === "banido" ? "para sempre" : p.ate ? quando(p.ate) : "–"}</td><td>${esc(p.motivo)}</td></tr>`).join("")}</table>` : `<p class="dica">Nunca foi punido.</p>`}`;
+  const motivo = () => document.getElementById("pMotivo").value.trim();
+  const fazer = async (rota, corpo, pergunta) => {
+    if (!confirm(pergunta)) return;
+    try { await chamar(rota, "POST", corpo); aviso("mFicha", "Feito.", true); abrirFicha(id); carregarJogadores(); carregarDenuncias(); }
+    catch (e) { aviso("mFicha", e.message, false); }
+  };
+  f.querySelectorAll("[data-dias]").forEach(b => b.onclick = () => {
+    if (!motivo()) return aviso("mFicha", "Escreva o motivo antes.", false);
+    fazer("/jogador/punir", {id, dias: +b.dataset.dias, motivo: motivo()}, `Suspender ${j.nick} por ${b.dataset.dias} dia(s)? Ele cai do jogo na hora.`);
+  });
+  const perm = f.querySelector("[data-perm]");
+  if (perm) perm.onclick = () => {
+    if (!motivo()) return aviso("mFicha", "Escreva o motivo antes.", false);
+    fazer("/jogador/punir", {id, permanente: true, motivo: motivo()}, `BANIR ${j.nick} para sempre? Ele cai do jogo na hora e não entra mais.`);
+  };
+  const lib = f.querySelector("[data-liberar]");
+  if (lib) lib.onclick = () => fazer("/jogador/liberar", {id, motivo: motivo()}, `Liberar a conta de ${j.nick}?`);
+  f.scrollIntoView({behavior: "smooth", block: "start"});
+}
+document.getElementById("fBusca").onsubmit = (e) => { e.preventDefault(); carregarJogadores(); };
+
+// ================= DENÚNCIAS =================
+async function carregarDenuncias() {
+  const st = document.getElementById("dStatus").value;
+  const r = await chamar("/denuncias?status=" + st).catch(e => ({erro: e.message, denuncias: []}));
+  if (st === "aberta") nDen.textContent = r.denuncias.length;
+  document.getElementById("listaDen").innerHTML = r.erro ? `<p class="msg erro">${esc(r.erro)}</p>` : r.denuncias.length ?
+    r.denuncias.map(d => `<div class="item"><div><b>${esc(d.denunciado_nick)}</b> — ${esc(d.motivo)}
+        <small>Por ${esc(d.denunciante)}, ${quando(d.criado_em)}${d.versao ? ", versão " + esc(d.versao) : ""}${d.detalhe ? "<br>" + esc(d.detalhe) : ""}</small></div>
+      <div class="acoes">${d.denunciado_id ? `<button class="pequeno" data-ficha="${d.denunciado_id}">Ver jogador</button>` : ""}
+        ${d.status === "aberta" ? `<button class="pequeno" data-den="${d.id}" data-st="descartada">Descartar</button><button class="pequeno ouro" data-den="${d.id}" data-st="resolvida">Resolvida</button>`
+          : `<button class="pequeno" data-den="${d.id}" data-st="aberta">Reabrir</button>`}</div></div>`).join("")
+    : `<p class="dica">Nenhuma denúncia aqui.</p>`;
+  document.querySelectorAll("[data-ficha]").forEach(b => b.onclick = () => abrirFicha(b.dataset.ficha));
+  document.querySelectorAll("[data-den]").forEach(b => b.onclick = async () => {
+    b.disabled = true; await chamar("/denuncia", "PATCH", {id: +b.dataset.den, status: b.dataset.st}).catch(e => alert(e.message)); carregarDenuncias(); carregarJogadores();
+  });
+}
+document.getElementById("dStatus").onchange = carregarDenuncias;
+
+document.getElementById("fAnuncio").onsubmit = async (e) => {
+  e.preventDefault();
+  const b = e.submitter; b.disabled = true;
+  try {
+    const r = await chamar("/anuncio", "POST", {
+      titulo: aTitulo.value.trim(), tipo: aTipo.value, texto: aTexto.value.trim(), link: aLink.value.trim() || null,
+      imagem_url: aImagem.value.trim() || null, fixado: aFixar.checked, autor: "Equipe Dinasty",
+    });
+    aviso("mAnuncio", r.discord ? "Publicado no jogo, no site e no Discord." : "Publicado no jogo e no site (o Discord não respondeu).", true);
+    e.target.reset(); carregar();
+  } catch (err) { aviso("mAnuncio", err.message, false); }
+  b.disabled = false;
+};
+
+// ================= CAMPEONATO: banner, prêmios e edição =================
+let campeonatos = {}, editando = null, enviando = 0;
+const TIPOS_PREMIO = {dinheiro: "💰 Dinheiro", skin: "🎨 Skin", trofeu: "🏆 Troféu", item: "🎁 Item", titulo: "👑 Título", outro: "⭐ Outro"};
+
+/** Reduz a imagem no navegador (banner JPG até 1600 px, ícone PNG até 256 px) e envia pro Storage. Devolve o link. */
+async function enviarImagem(arquivo, pasta, max, tipo) {
+  const bmp = await createImageBitmap(arquivo);
+  const k = Math.min(1, max / Math.max(bmp.width, bmp.height));
+  const cv = document.createElement("canvas");
+  cv.width = Math.round(bmp.width * k); cv.height = Math.round(bmp.height * k);
+  cv.getContext("2d").drawImage(bmp, 0, 0, cv.width, cv.height);
+  const dado = cv.toDataURL(tipo, 0.86);
+  enviando++;
+  try { return (await chamar("/midia", "POST", {pasta, tipo, base64: dado})).url; }
+  finally { enviando--; }
+}
+
+function mostrarBanner() {
+  const u = cImagem.value.trim();
+  previaBanner.hidden = !/^https:\/\//.test(u);
+  if (!previaBanner.hidden) previaBanner.src = u;
+  tirarBanner.hidden = !u;
+}
+cImagem.oninput = mostrarBanner;
+tirarBanner.onclick = () => { cImagem.value = ""; cBanner.value = ""; mostrarBanner(); };
+cBanner.onchange = async () => {
+  const f = cBanner.files[0]; if (!f) return;
+  aviso("mCamp", "Enviando o banner...", true);
+  try { cImagem.value = await enviarImagem(f, "campeonatos", 1600, "image/jpeg"); mostrarBanner(); aviso("mCamp", "Banner pronto.", true); }
+  catch (err) { aviso("mCamp", "Banner: " + err.message, false); }
+};
+
+function linhaPremio(p = {}) {
+  const n = document.querySelectorAll("#premios .premio").length;
+  const d = document.createElement("div");
+  d.className = "premio";
+  d.innerHTML = `<input class="lugar" maxlength="30" aria-label="Colocação" placeholder="1º lugar">
+    <select class="tipo" aria-label="Tipo do prêmio">${Object.entries(TIPOS_PREMIO).map(([k, v]) => `<option value="${k}">${v}</option>`).join("")}</select>
+    <input class="texto" maxlength="80" aria-label="O que ganha" placeholder="R$ 500, Skin Lâmina Roxa, Troféu...">
+    <label class="icone" title="Ícone do prêmio (opcional)"><input type="file" accept="image/png,image/jpeg,image/webp" hidden aria-label="Ícone do prêmio"><span>+</span></label>
+    <button type="button" class="perigo" aria-label="Tirar este prêmio">✕</button>`;
+  d.querySelector(".lugar").value = p.lugar ?? (n + 1) + "º lugar";
+  d.querySelector(".tipo").value = p.tipo || (n === 0 ? "dinheiro" : "item");
+  d.querySelector(".texto").value = p.texto || "";
+  d.dataset.icone = p.icone_url || "";
+  const caixa = d.querySelector(".icone");
+  const pintar = () => caixa.querySelector("span").innerHTML = d.dataset.icone ? `<img src="${esc(d.dataset.icone)}" alt="">` : "+";
+  pintar();
+  caixa.querySelector("input").onchange = async (ev) => {
+    const f = ev.target.files[0]; if (!f) return;
+    caixa.querySelector("span").textContent = "…";
+    try { d.dataset.icone = await enviarImagem(f, "premios", 256, "image/png"); }
+    catch (err) { aviso("mCamp", "Ícone: " + err.message, false); }
+    pintar();
+  };
+  d.querySelector("button").onclick = () => d.remove();
+  premios.appendChild(d);
+}
+maisPremio.onclick = () => linhaPremio();
+const lerPremios = () => [...document.querySelectorAll("#premios .premio")].map(d => ({
+  lugar: d.querySelector(".lugar").value.trim(), tipo: d.querySelector(".tipo").value,
+  texto: d.querySelector(".texto").value.trim(), icone_url: d.dataset.icone || null,
+})).filter(p => p.texto);
+
+/** ISO → "2026-10-25T20:00" no horário de Brasília (pro campo datetime-local) */
+const local = (v) => v ? new Date(new Date(v).getTime() - 3 * 3600e3).toISOString().slice(0, 16) : "";
+
+function limparFormCamp() {
+  editando = null;
+  fCamp.reset(); fCamp.classList.remove("editando");
+  premios.innerHTML = ""; linhaPremio();
+  tCamp.textContent = "Novo campeonato"; bCamp.textContent = "Criar e anunciar"; cancelarEdicao.hidden = true;
+  mostrarBanner();
+}
+function editarCampeonato(c) {
+  if (!c) return;
+  editando = c.id;
+  cNome.value = c.nome; cModo.value = c.modo; cVagas.value = c.vagas;
+  cQuando.value = local(c.comeca_em); cAte.value = local(c.inscricoes_ate);
+  cDesc.value = c.descricao || ""; cImagem.value = c.imagem_url || ""; cLive.value = c.live_url || ""; cBanner.value = "";
+  premios.innerHTML = "";
+  const ps = c.premios && c.premios.length ? c.premios : (c.premio ? [{lugar: "", tipo: "outro", texto: c.premio}] : []);
+  if (ps.length) ps.forEach(linhaPremio); else linhaPremio();
+  tCamp.textContent = "Editar campeonato nº " + c.id; bCamp.textContent = "Salvar alterações"; cancelarEdicao.hidden = false;
+  fCamp.classList.add("editando"); mostrarBanner(); aviso("mCamp", "", true);
+  fCamp.scrollIntoView({behavior: "smooth", block: "start"});
+}
+cancelarEdicao.onclick = limparFormCamp;
+limparFormCamp();
+
+fCamp.onsubmit = async (e) => {
+  e.preventDefault();
+  if (enviando) { aviso("mCamp", "Espere as imagens terminarem de enviar.", false); return; }
+  const b = e.submitter; b.disabled = true;
+  const corpo = {
+    nome: cNome.value.trim(), modo: cModo.value, vagas: +cVagas.value, comeca_em: iso(cQuando.value), inscricoes_ate: iso(cAte.value),
+    premios: lerPremios(), descricao: cDesc.value.trim(), imagem_url: cImagem.value.trim() || null, live_url: cLive.value.trim() || null,
+  };
+  if (!corpo.premios.length) corpo.premio = "";
+  try {
+    if (editando) {
+      await chamar("/campeonato", "PATCH", {id: editando, ...corpo});
+      aviso("mCamp", "Salvo. Já atualizou no jogo, no launcher, no site e na mensagem do Discord.", true);
+    } else {
+      await chamar("/campeonato", "POST", corpo);
+      aviso("mCamp", "Campeonato criado e anunciado em tudo.", true);
+    }
+    const msg = mCamp.textContent; limparFormCamp(); aviso("mCamp", msg, true); carregar();
+  } catch (err) { aviso("mCamp", err.message, false); }
+  b.disabled = false;
+};
+</script>
+<script src="assets/js/time.js"></script>
+</body>
+</html>

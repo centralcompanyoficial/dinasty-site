@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Dinasty · Discord</title>
+<link rel="icon" href="img/icone.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--roxo:#7B3CFF;--roxo2:#B57BFF;--ouro:#FFD147;--txt:#F3EEFF;--suave:#B9AEDB;--erro:#FF6B7A;--ok:#4BE39B}
+*{box-sizing:border-box}
+body{margin:0;min-height:100svh;display:grid;place-items:center;color:var(--txt);font:400 17px/1.55 Rajdhani,system-ui,sans-serif;text-align:center;padding:20px;
+  background:radial-gradient(1200px 700px at 50% -10%,#5B22D6 0%,transparent 60%),radial-gradient(900px 600px at 50% 120%,#3A0E7A 0%,transparent 60%),#120626;overflow:hidden}
+body:before{content:"";position:fixed;inset:-50%;background:conic-gradient(from 0deg,transparent,rgba(181,123,255,.08),transparent 30%);animation:gira 18s linear infinite;pointer-events:none}
+@keyframes gira{to{transform:rotate(360deg)}}
+.cartao{position:relative;max-width:520px;width:100%;padding:44px 32px 34px;border-radius:22px;background:linear-gradient(180deg,rgba(40,16,86,.85),rgba(20,8,44,.92));
+  border:1px solid rgba(181,123,255,.35);box-shadow:0 0 0 1px rgba(255,255,255,.04) inset,0 30px 80px rgba(0,0,0,.55),0 0 60px rgba(123,60,255,.35);backdrop-filter:blur(8px);animation:entra .6s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes entra{from{opacity:0;transform:translateY(20px) scale(.96)}}
+.logo{height:30px;margin:0 auto 26px;display:block;opacity:.95}
+.selo{width:92px;height:92px;margin:0 auto 22px;border-radius:50%;display:grid;place-items:center;font-size:46px;
+  background:radial-gradient(circle at 35% 30%,#8DFFC9,#1FB774);box-shadow:0 0 0 8px rgba(75,227,155,.15),0 0 40px rgba(75,227,155,.55);animation:pulsa 2.2s ease-in-out infinite}
+.selo.erro{background:radial-gradient(circle at 35% 30%,#FFB0B8,#E0344B);box-shadow:0 0 0 8px rgba(255,107,122,.15),0 0 40px rgba(255,107,122,.5)}
+@keyframes pulsa{50%{transform:scale(1.05)}}
+h1{font:900 clamp(40px,8vw,64px)/.95 "Bebas Neue","Arial Narrow",sans-serif;text-transform:uppercase;margin:0 0 14px;letter-spacing:.5px;
+  background:linear-gradient(180deg,#fff,#D9C6FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1.erro{background:linear-gradient(180deg,#fff,#FFB0B8);-webkit-background-clip:text;background-clip:text}
+p{color:var(--suave);white-space:pre-line;margin:0 0 8px}
+.dica{margin-top:22px;padding:12px 14px;border-radius:12px;background:rgba(123,60,255,.14);border:1px solid rgba(181,123,255,.22);font-size:15px;color:#D9CCFF}
+.botoes{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.bt{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;font:600 15px Rajdhani,sans-serif;text-decoration:none;color:#fff;transition:transform .15s,box-shadow .15s}
+.bt:hover{transform:translateY(-2px)}
+.bt.discord{background:linear-gradient(180deg,#6F7BFF,#5865F2);box-shadow:0 8px 24px rgba(88,101,242,.45)}
+.bt.site{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}
+.rodape{margin-top:26px;font-size:13px;color:#8F84B8}
+</style>
+</head>
+<body>
+<div class="cartao">
+  <img class="logo" src="img/logo.png" alt="Dinasty">
+  <div class="selo" id="selo"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+  <h1 id="t">Pronto!</h1>
+  <p id="m">Pode fechar esta aba e voltar pro jogo.</p>
+  <div class="dica" id="dica">Volte pro <b>Dinasty</b>: o jogo entra sozinho na sua conta em alguns segundos.</div>
+  <div class="botoes">
+    <a class="bt discord" href="https://drjxrhjbkqcjhhqkssvz.supabase.co/functions/v1/dinasty-api/convite?ir">Abrir o servidor no Discord</a>
+    <a class="bt site" href="./">Site do Dinasty</a>
+  </div>
+  <div class="rodape">dinastyperformance.com.br</div>
+</div>
+<script>
+const q = new URLSearchParams(location.search);
+if (q.get("t")) document.getElementById("t").textContent = q.get("t");
+if (q.get("m")) document.getElementById("m").textContent = q.get("m");
+if (q.get("ok") === "0") {
+  document.getElementById("t").className = "erro";
+  const s = document.getElementById("selo"); s.className = "selo erro"; s.textContent = "!";
+  document.getElementById("dica").innerHTML = "Volte pro <b>Dinasty</b> e clique em <b>Entrar com Discord</b> de novo.";
+}
+</script>
+</body>
+</html>

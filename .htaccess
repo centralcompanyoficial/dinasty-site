@@ -1,0 +1,31 @@
+# Instalador baixa direto (não abre no navegador)
+<FilesMatch "\.exe$">
+  ForceType application/octet-stream
+  Header set Content-Disposition attachment
+</FilesMatch>
+# versao.json nunca fica guardado em cache (o jogo e o site sempre leem a versão nova)
+<Files "versao.json">
+  Header set Cache-Control "no-store"
+  Header set Access-Control-Allow-Origin "*"
+</Files>
+# Imagens ficam em cache por 30 dias
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType video/mp4 "access plus 30 days"
+</IfModule>
+# Página de erro bonita (link quebrado = "caiu da borda")
+ErrorDocument 404 /404.html
+# Vídeos de gameplay (img/video/*.mp4) com o tipo certo
+AddType video/mp4 .mp4
+AddType image/webp .webp
+
+# 29/10: Ceifador (foice) e Atirador (rifle) saíram do jogo por enquanto: as páginas antigas vão pra lista de armas
+RedirectMatch 301 ^/classes/(ceifador|atirador)/?$ /classes/
+# CSS e JS com ?v= podem ficar em cache por bastante tempo
+<IfModule mod_expires.c>
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+</IfModule>
